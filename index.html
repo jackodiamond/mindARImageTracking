@@ -22,6 +22,7 @@
 
       import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+      var sceneIndex = 1;
       const THREE = window.MINDAR.IMAGE.THREE;
       const mindarThree = new window.MINDAR.IMAGE.MindARThree({
     container: document.querySelector("#container"),
@@ -181,9 +182,15 @@ function loadFile()
     
   for(var i=0;i<recievedObject.length;i++)
     {
-        currentScene=i;
+      if(sceneIndex-1 != i)
+      {
+        return;
+      }
+
+
+      currentScene=0;
       console.log("::cs : "+currentScene)
-        recievedObjectCopy.push(recievedObject[i]);
+      recievedObjectCopy.push(recievedObject[i]);
 
 
       var objects = recievedObject[i].meshObjects;
