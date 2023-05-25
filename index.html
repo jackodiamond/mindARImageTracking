@@ -188,6 +188,12 @@ function loadFile()
         console.log("break : "+i);
         continue;
       }
+      
+      if(recievedObject[i].sceneType != 1)
+      {
+        console.log("scene type is not image tracking!");
+        continue;
+      }
 
 
       currentScene=0;
