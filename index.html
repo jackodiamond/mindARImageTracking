@@ -22,7 +22,7 @@
 
       import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-      var sceneIndex = 1;
+      var sceneIndex = 2;
       const THREE = window.MINDAR.IMAGE.THREE;
       const mindarThree = new window.MINDAR.IMAGE.MindARThree({
     container: document.querySelector("#container"),
@@ -79,17 +79,18 @@ const ObjectType ={
     cube:0,
     sphere:1,
     cylinder:2,
-    Text:3,
+    text:3,
     image:4,
     gltf:5,
     video:6,
-  capsule:7,
-  polyhedron:8,
-  glodberg:9,
-  icosphere:10,
-  torus:11,
-  torusknot:12,
-  audio:13
+    capsule:7,
+    polyhedron:8,
+    glodberg:9,
+    icosphere:10,
+    torus:11,
+    torusknot:12,
+    audio:13,
+    button:14
 }
 
 const actionType ={
@@ -275,6 +276,16 @@ function loadFile()
           loadAudio(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
           break;
 
+          case "text":
+              console.log("txt");
+          loadText(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl,objects[j].label);
+          break;
+
+          case "button":
+              console.log("btn");
+          loadButton(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
+          break;
+
           case "gltf":
               console.log("gltf scene to add "+currentScene);
               gltfScene.push(currentScene);
@@ -345,7 +356,7 @@ const loader = new GLTFLoader();
 // Load a glTF resource
 loader.load(
   // resource URL
-  'capsule.glb',
+  'models/capsule.glb',
   // called when the resource is loaded
   function ( gltf ) {
 
@@ -514,8 +525,45 @@ function loadAudio(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,url)
     plane.name = "audio";
     objects.push(plane);
     audios.set(plane, audio);
-
 }
+
+function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
+{
+  // Create text geometry
+  var textGeometry = new THREE.TextGeometry(label, {
+  font: new THREE.FontLoader().parse(YOUR_FONT_JSON_URL), // Replace with the URL to your font JSON file
+  size: 1,
+  height: 0.1,
+  curveSegments: 12,
+  bevelEnabled: false
+  });
+
+  // Create text material
+  var textMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+
+  // Create text mesh
+  var textMesh = new THREE.Mesh(textGeometry, textMaterial);
+  textMesh.position.set(posx*0.1,posz*0.1,posy*0.1);
+  textMesh.rotation.set(rotx,roty,rotz);
+  textMesh.scale.set(scalex,scaley,scalez);
+  scene.add(textMesh);
+}
+
+function loadButton(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
+{
+    //button same as cube
+    const geometry = new THREE.BoxGeometry( 0.1, 0.05, 0.01 );
+//  const geometry2 = new THREE.sp
+    const material = new THREE.MeshLambertMaterial( { color: 0xc0c0c0 } );
+    var mesh = new THREE.Mesh( geometry, material );
+
+    anchor[currentScene].group.add(mesh);
+    mesh.position.set(posx*0.1,posz*0.1,posy*0.1);
+    mesh.rotation.set(rotx,roty,rotz);
+    mesh.scale.set(scalex,scaley,scalez);
+    objects.push(mesh);
+}
+
 
 function loadGLTF(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,url)
 {
