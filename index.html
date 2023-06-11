@@ -546,8 +546,8 @@ function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
 
         font: font,
 
-        size: 20,
-        height: 5,
+        size: 200,
+        height: 50,
         curveSegments: 12,
 
         bevelThickness: 2,
@@ -565,6 +565,7 @@ function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
   textMesh.rotation.set(rotx,roty,rotz);
   textMesh.scale.set(scalex,scaley,scalez);
   scene.add(textMesh);
+  console.log("text added");
   });
 }
 
