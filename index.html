@@ -539,22 +539,17 @@ function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
 
   // Instantiate a loader
   const fontLoader = new FontLoader();
-
- fontLoader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
-
-    const textGeo = new TextGeometry( "My Text", {
-
-        font: font,
-
-        size: 200,
-        height: 50,
-        curveSegments: 12,
-
-        bevelThickness: 2,
-        bevelSize: 5,
-        bevelEnabled: true
-
-    } );
+   
+   
+   let font = fontLoader.parse('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json');
+    var textGeo = new TextGeometry('three.js', {
+      font: font,
+      size: 120,
+      height: 1,
+      material: 0,
+      bevelThickness: 1,
+      extrudeMaterial: 1
+    });
 
   // Create text material
   const textMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
@@ -566,7 +561,7 @@ function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
   textMesh.scale.set(scalex,scaley,scalez);
   scene.add(textMesh);
   console.log("text added");
-  });
+  
 }
 
 function loadButton(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
