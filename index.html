@@ -540,7 +540,7 @@ function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
 
   // Create text geometry
   var textGeometry = new THREE.TextGeometry(label, {
-  font: new fontLoader.parse(YOUR_FONT_JSON_URL), // Replace with the URL to your font JSON file
+  font: new fontLoader.parse("https://threejs.org/examples/fonts/helvetiker_regular.typeface.json"), // Replace with the URL to your font JSON file
   size: 1,
   height: 0.1,
   curveSegments: 12,
