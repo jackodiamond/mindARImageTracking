@@ -557,7 +557,7 @@ function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
     } );
 
   // Create text material
-  var textMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  const textMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
 
   // Create text mesh
   var textMesh = new THREE.Mesh(textGeo, textMaterial);
