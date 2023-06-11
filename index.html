@@ -23,6 +23,8 @@
       import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
       import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+      
+      import {TextGeometry} from 'three/addons/geometries/TextGeometry.js';
 
       var sceneIndex = 1;
       const THREE = window.MINDAR.IMAGE.THREE;
@@ -540,7 +542,7 @@ function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
 
  fontLoader.load( 'https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-    const textGeo = new THREE.TextGeometry( "My Text", {
+    const textGeo = new TextGeometry( "My Text", {
 
         font: font,
 
