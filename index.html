@@ -550,7 +550,7 @@ const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regul
             let text = 'Tutorialspoint'
             const geometry = new TextGeometry(text, {
                font: font,
-               size: 3,
+               size: 1,
                height: 0.2,
                curveSegments: 12,
                bevelEnabled: true,
@@ -569,8 +569,9 @@ const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regul
                }) // side
             ]
             const mesh = new THREE.Mesh(geometry, material)
+            mesh.position.set(0,0,0)
             scene.add(mesh)
-            
+            console.log("text added")
 }
 
 function loadButton(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
