@@ -548,7 +548,7 @@ async function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label
 {
 const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json')
             let text = 'Tutorialspoint'
-            const geometry = new THREE.TextGeometry(text, {
+            const geometry = new TextGeometry(text, {
                font: font,
                size: 3,
                height: 0.2,
