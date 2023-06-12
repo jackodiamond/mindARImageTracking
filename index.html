@@ -561,7 +561,8 @@ function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
 
   // Create text mesh
   var textMesh = new THREE.Mesh(textGeo, textMaterial);
- // textMesh.position.set(posx*0.1,posz*0.1,posy*0.1);
+  textMesh.position.set(0,0,0);
+//  textMesh.position.set(posx*0.1,posz*0.1,posy*0.1);
  // textMesh.rotation.set(rotx,roty,rotz);
  // textMesh.scale.set(scalex,scaley,scalez);
   scene.add(textMesh);
