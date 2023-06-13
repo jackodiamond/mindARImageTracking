@@ -567,11 +567,11 @@ function loadAudio(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,url)
 async function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
 {
 const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json')
-            let text = 'Tutorialspoint'
-            const geometry = new TextGeometry(text, {
+      
+            const geometry = new TextGeometry(label, {
                font: font,
-               size: 0.5,
-               height: 0.1,
+               size: 0.05,
+               height: 0.01,
                curveSegments: 12,
 
             })
