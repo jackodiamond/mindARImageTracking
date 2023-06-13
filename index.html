@@ -304,7 +304,7 @@ function loadFile()
           break;
 
           case "text":
-              console.log("txt");
+              console.log("txt :"+objects[j].label);
           loadText(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl,objects[j].label);
           break;
 
@@ -568,6 +568,7 @@ async function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label
 {
 const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json')
       
+            console.log("label : "+label)
             const geometry = new TextGeometry(label, {
                font: font,
                size: 0.05,
