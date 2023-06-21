@@ -244,7 +244,7 @@ function loadFile()
             {
                     case "cube":
                         console.log("boax");
-                    loadBox(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z);
+                    loadBox(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z);
                     break;
                     
                     case "sphere":
@@ -254,18 +254,18 @@ function loadFile()
 
           case "cylinder":
               console.log("cylinder");
-          loadCylinder(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z);
+          loadCylinder(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z);
           break;
           
           case "capsule":
               console.log("capsule");
               gltfScene.push(currentScene);
-          loadCapsule(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z);
+          loadCapsule(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z);
           break;
 
           case "polyhedron":
               console.log("polyhedron");
-          loadPolyhedron(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z);
+          loadPolyhedron(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z);
           break;
           
           case "goldberg":
@@ -290,33 +290,33 @@ function loadFile()
 
                     case "image":
                         console.log("image");
-                    loadImage(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
+                    loadImage(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
                     break;
 
                     case "video":
                         console.log("video");
-                    loadVideo(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
+                    loadVideo(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
                     break;
 
           case "audio":
               console.log("audio");
-          loadAudio(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
+          loadAudio(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
           break;
 
           case "text":
               console.log("txt :"+objects[j].label);
-          loadText(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].label);
+          loadText(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].label);
           break;
 
           case "button":
               console.log("btn");
-          loadButton(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
+          loadButton(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
           break;
 
           case "gltf":
               console.log("gltf scene to add "+currentScene);
               gltfScene.push(currentScene);
-          loadGLTF(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
+          loadGLTF(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
           break;
             }
         }
