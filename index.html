@@ -491,7 +491,6 @@ function loadTorusknot(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
 function loadImage(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,url)
 {
     var planeGeometry = new THREE.PlaneGeometry(0.3, 0.3, 1, 1);
-    url = "https://upload.wikimedia.org/wikipedia/en/8/86/Einstein_tongue.jpg";
     var textur = new THREE.TextureLoader().load( url );
     var planeMaterial = new THREE.MeshPhysicalMaterial( { map: textur } );
     var plane = new THREE.Mesh(planeGeometry, planeMaterial);
