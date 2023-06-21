@@ -330,13 +330,14 @@ function loadFile()
 
 });
 var i=0;
-  for(i=0;i<10;i++)
-  {
-    const light = new THREE.PointLight(0xffffff, 1.2);
+   const light = new THREE.PointLight(0xffffff, 1.2);
     light.position.set(1.1, 1.1, 1);
-    anchor[i].group.add(light);
-    const light2 = new THREE.PointLight(0xffffff, 1.2);
+      const light2 = new THREE.PointLight(0xffffff, 1.2);
     light2.position.set(-1.1, -1.1, 1);
+  for(i=0;i<2;i++)
+  {
+    anchor[i].group.add(light);
+
     anchor[i].group.add(light2);
   }
 }
