@@ -323,13 +323,16 @@ function loadFile()
     }
 
 });
-
+var i=0;
+  for(i=0;i<10;i++)
+  {
     const light = new THREE.PointLight(0xffffff, 1.2);
     light.position.set(1.1, 1.1, 1);
-    anchor[0].group.add(light);
+    anchor[i].group.add(light);
     const light2 = new THREE.PointLight(0xffffff, 1.2);
     light2.position.set(-1.1, -1.1, 1);
-    anchor[0].group.add(light2);
+    anchor[i].group.add(light2);
+  }
 }
 
 function loadBox(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
