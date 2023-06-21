@@ -328,8 +328,8 @@ function loadFile()
     light.position.set(1.1, 1.1, 1);
     anchor[0].group.add(light);
     const light2 = new THREE.PointLight(0xffffff, 1.2);
-    light2.position.set(-1.1, 1.1, -1);
-    anchor[1].group.add(light2);
+    light2.position.set(-1.1, -1.1, 1);
+    anchor[0].group.add(light2);
 }
 
 function loadBox(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
