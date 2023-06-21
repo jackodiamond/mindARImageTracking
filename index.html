@@ -329,17 +329,19 @@ function loadFile()
     }
 
 });
-var i=0;
    const light = new THREE.PointLight(0xffffff, 1.2);
     light.position.set(1.1, 1.1, 1);
       const light2 = new THREE.PointLight(0xffffff, 1.2);
     light2.position.set(-1.1, -1.1, 1);
-  for(i=0;i<2;i++)
-  {
-    anchor[i].group.add(light);
+    anchor[0].group.add(light);
+    anchor[0].group.add(light2);
 
-    anchor[i].group.add(light2);
-  }
+  anchor[1].group.add(light);
+    anchor[1].group.add(light2);
+
+  anchor[2].group.add(light);
+    anchor[2].group.add(light2);
+  
 }
 
 function loadBox(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
