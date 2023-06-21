@@ -58,6 +58,12 @@
       anchor.push(anchor1);
       const anchor2 = mindarThree.addAnchor(1);
       anchor.push(anchor2);
+      var counter=2;
+      for(counter=2;counter<8;counter++)
+        {
+          const anchorNew = mindThree.addAnchor(counter);
+          anchor.push(anchorNew);
+        }
       const geometry = new THREE.PlaneGeometry(1, 0.55);
       const material = new THREE.MeshBasicMaterial( {color: 0x00ffff, transparent: true, opacity: 0.9} );
       const plane = new THREE.Mesh( geometry, material );
