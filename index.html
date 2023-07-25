@@ -625,7 +625,9 @@ function loadHotspot(hotspotData)
         var textur = new THREE.TextureLoader().load( hotspotData.mediaUrl );
         var planeMaterial = new THREE.MeshPhysicalMaterial( { map: textur } );
 
-        var mesh = new THREE.Mesh( geometry, textur );
+        const material = new THREE.MeshLambertMaterial( { color: 0xc0c0c0 } );
+
+        var mesh = new THREE.Mesh( geometry, material );
         console.log("cylinder scene"+currentScene);
         anchor[currentScene].group.add(mesh);
 
