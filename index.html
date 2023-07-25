@@ -114,8 +114,9 @@ const ObjectType ={
     torus:11,
     torusknot:12,
     audio:13,
-    button:14
-}
+    button:14,
+    hotspot:15
+  }
 
 const actionType ={
     click:0,
@@ -317,6 +318,11 @@ function loadFile()
               console.log("gltf scene to add "+currentScene);
               gltfScene.push(currentScene);
           loadGLTF(objects[j].position.x,objects[j].position.y,objects[j].position.z,objects[j].rotation.x,objects[j].rotation.y+1.5,objects[j].rotation.z,objects[j].scale.x,objects[j].scale.y,objects[j].scale.z,objects[j].mediaUrl);
+          break;
+
+          case "hotspot":
+              console.log("hotspot");
+              loadHotspot(object[j]);
           break;
             }
         }
@@ -566,32 +572,32 @@ function loadAudio(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,url)
       
 async function loadText(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,label)
 {
-const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json')
-      
-            console.log("label : "+label)
-            const geometry = new TextGeometry(label, {
-               font: font,
-               size: 0.05,
-               height: 0.01,
-               curveSegments: 12,
+    const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json')
 
-            })
-            const material = [
-               new THREE.MeshPhongMaterial({
-                  color: 0xffcc22,
-               flatShading: true
-               }), // front
-               new THREE.MeshPhongMaterial({
-               color: 0xffcc22
-               }) // side
-            ]
-            const mesh = new THREE.Mesh(geometry, material)
-            mesh.position.set(posx*0.1,posz*0.1,posy*0.1);
-            mesh.rotation.set(rotx,roty,rotz);
-             mesh.scale.set(scalex,scaley,scalez);
-            anchor[currentScene].group.add(mesh);
-            objects.push(mesh);
-            console.log("text added")
+    console.log("label : "+label)
+    const geometry = new TextGeometry(label, {
+       font: font,
+       size: 0.05,
+       height: 0.01,
+       curveSegments: 12,
+
+    })
+    const material = [
+       new THREE.MeshPhongMaterial({
+          color: 0xffcc22,
+       flatShading: true
+       }), // front
+       new THREE.MeshPhongMaterial({
+       color: 0xffcc22
+       }) // side
+    ]
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(posx*0.1,posz*0.1,posy*0.1);
+    mesh.rotation.set(rotx,roty,rotz);
+     mesh.scale.set(scalex,scaley,scalez);
+    anchor[currentScene].group.add(mesh);
+    objects.push(mesh);
+    console.log("text added")
 }
 
 function loadButton(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
@@ -609,6 +615,169 @@ function loadButton(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez)
     objects.push(mesh);
 }
 
+function loadHotspot(hotspotData)
+{
+        console.log("load hotspot "+hotspotData);
+
+        const geometry = new THREE.CylinderGeometry( 0.2, 0.2, 0.5,10 );
+        //  const geometry2 = new THREE.sp
+
+        var  = new THREE.TextureLoader().load( hotspotData.mediaUrl );
+        var planeMaterial = new THREE.MeshPhysicalMaterial( { map: textur } );
+
+        var mesh = new THREE.Mesh( geometry, textur );
+        console.log("cylinder scene"+currentScene);
+        anchor[currentScene].group.add(mesh);
+
+        mesh.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1,hotspotData.position.y*0.1);
+        mesh.rotation.set(hotspotData.rotation.x,hotspotData.rotation.y,hotspotData.rotation.z);
+        mesh.scale.set(hotspotData.scale.x,hotspotData.scale.y,hotspotData.scale.z);
+
+/*
+        // Create 3D text
+          
+          const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json')
+
+          console.log("label : "+label)
+          const geometry = new TextGeometry(hotspotData.actionData.addHotspotQuestion.question, {
+             font: font,
+             size: 0.05,
+             height: 0.01,
+             curveSegments: 12,
+
+          })
+          const material = [
+             new THREE.MeshPhongMaterial({
+                color: 0xffcc22,
+             flatShading: true
+             }), // front
+             new THREE.MeshPhongMaterial({
+             color: 0xffcc22
+             }) // side
+          ]
+          const mesh = new THREE.Mesh(geometry, material)
+
+          plane.parent = parent;
+
+          //add option
+          console.log("options "+meshData.actionData.addHotspotQuestion.allOptions.length);
+
+          meshData.actionData.addHotspotQuestion.allOptions.forEach((option, index) => {
+            console.log(`Option ${index + 1}:`);
+            console.log("Title:", option.title);
+            console.log("Value:", option.value);
+
+            // Create 3D text
+            var text = option.title;
+            var font = "36px Arial";
+            var color = "white";
+            var backgroundColor = "transparent";
+            var textureText = new DynamicTexture("textTexture", 512, this.scene, true);
+            textureText.hasAlpha = true;
+            textureText.drawText(text, null, null, font, color, backgroundColor, true);
+
+            // Create a plane to apply the texture
+            var plane = MeshBuilder.CreatePlane("plane", { size: 2 }, this.scene);
+            var material = new StandardMaterial("material", this.scene);
+            material.diffuseTexture = textureText;
+            plane.material = material;
+            plane.position.y = hotspot.position.y+1-(index+1)*0.25;
+            plane.parent = parent;
+
+            //create option button
+            var optionButton = MeshBuilder.CreateCylinder('cylinder', { height: 0.01, diameter: 0.15 }, this.scene);
+          
+            optionButton.rotation.x = -70* Math.PI / 180;
+            optionButton.position.x = -1;
+            optionButton.position.y = hotspot.position.y+1-(index+1)*0.25;
+        
+            console.log("rtotaion "+hotspot.rotation);
+        
+            var mat = new StandardMaterial("mat1", this.scene);
+            var texture = new Texture("assets/uncheck.png", this.scene);
+            mat.diffuseTexture = texture; 
+        
+            optionButton.material = mat;
+            optionButton.parent = parent;
+            this.optionState.set(optionButton,false);
+            this.scene.onPointerObservable.add( (evt) => {
+              if (evt.pickInfo?.pickedMesh === optionButton) {
+               if(this.optionState.get(optionButton)==false)
+               {
+                this.optionState.set(optionButton,true);
+
+                var texture = new Texture("assets/check.png", this.scene);
+                mat.diffuseTexture = texture; 
+        
+                optionButton.material = mat;
+               
+               }else
+               {
+                this.optionState.set(optionButton,false);
+
+                var texture = new Texture("assets/uncheck.png", this.scene);
+                mat.diffuseTexture = texture; 
+            
+                optionButton.material = mat;
+               }
+                console.log("option clicked");
+              }
+            }, PointerEventTypes.POINTERPICK);
+
+            if(index+1==meshData.actionData.addHotspotQuestion.allOptions.length)
+            {
+              var planeOpts = {
+                height: 0.2, 
+                width: 0.6,
+                sideOrientation: Mesh.DOUBLESIDE
+              };
+              var Image = MeshBuilder.CreatePlane("plane", planeOpts, this.scene);
+
+              var texture = new Texture("assets/submit.png", this.scene);
+              var mat2 = new StandardMaterial("mat1", this.scene);
+              mat2.diffuseTexture = texture; 
+            
+              Image.material = mat2;
+
+              Image.position.x = 1;
+              Image.position.y = hotspot.position.y+1-(index+2)*0.25; 
+
+              this.scene.onPointerObservable.add( (evt) => {
+                if (evt.pickInfo?.pickedMesh === Image) {
+                 
+                  console.log("submit clicked");
+                   // Create 3D text
+                  var text = meshData.actionData.addHotspotQuestion.feedbackIfIncorrect;
+                  var font = "36px Arial";
+                  var color = "white";
+                  var backgroundColor = "transparent";
+                  var textureText = new DynamicTexture("textTexture", 512, this.scene, true);
+                  textureText.hasAlpha = true;
+                  textureText.drawText(text, null, null, font, color, backgroundColor, true);
+
+                  // Create a plane to apply the texture
+                  var plane = MeshBuilder.CreatePlane("plane", { size: 2 }, this.scene);
+                  var material = new StandardMaterial("material", this.scene);
+                  material.diffuseTexture = textureText;
+                  plane.material = material;
+                  plane.position.y = hotspot.position.y+1;
+                  plane.rotation.y = -90*Math.PI/180;
+
+                  setTimeout(function() {
+                    plane.visibility = 0; // Set visibility to 0 to hide the mesh
+                  }, 5000);
+                  
+                  parent.setEnabled(false);
+                }
+              }, PointerEventTypes.POINTERPICK);
+
+              Image.parent = parent;
+
+
+            }
+          });
+*/
+}
 
 function loadGLTF(posx,posy,posz,rotx,roty,rotz,scalex,scaley,scalez,url)
 {
