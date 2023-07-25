@@ -622,7 +622,7 @@ function loadHotspot(hotspotData)
         const geometry = new THREE.CylinderGeometry( 0.2, 0.2, 0.5,10 );
         //  const geometry2 = new THREE.sp
 
-        var  = new THREE.TextureLoader().load( hotspotData.mediaUrl );
+        var textur = new THREE.TextureLoader().load( hotspotData.mediaUrl );
         var planeMaterial = new THREE.MeshPhysicalMaterial( { map: textur } );
 
         var mesh = new THREE.Mesh( geometry, textur );
