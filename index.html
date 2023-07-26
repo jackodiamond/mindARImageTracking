@@ -639,7 +639,7 @@ async function loadHotspot(hotspotData)
         objects.push(mesh);
 
         // Create an empty geometry and material
-      const emptyGeometry = new THREE.Geometry();
+      const emptyGeometry = new THREE.BoxGeometry( 0, 0, 0.01 );
       const emptyMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
 
       // Create the empty mesh using the empty geometry and material
