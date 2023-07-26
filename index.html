@@ -649,6 +649,9 @@ async function loadHotspot(hotspotData)
 
         switch(hotspotData.ActionType)
         {
+
+          console.log("hotspot indide switchc");
+            
           case "link_to_scene":
             break;
 
@@ -656,6 +659,7 @@ async function loadHotspot(hotspotData)
             break;
 
           case "display_message":
+              console.log("display_message");
                const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json');
 
               console.log("label : "+"afdafd");
@@ -693,6 +697,7 @@ async function loadHotspot(hotspotData)
             break;
 
             default :
+            console.log("default switch");
             if(hotspotData.ActionType == "Single Correct" || hotspotData.ActionType == "True or False" || hotspotData.ActionType == "Multiple Correct")
             {
               
