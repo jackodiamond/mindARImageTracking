@@ -73,6 +73,7 @@
       var clock = new THREE.Clock();
       var videos = new Map();
       var audios = new Map();
+      var hotspotMap = new Map();
    //   anchor.group.add(plane);
       const start = async() => {
     await mindarThree.start();
@@ -647,6 +648,7 @@ async function loadHotspot(hotspotData)
 
       mesh.add(parent);
 
+      hotspotMap.set(mesh, parent);
   
         console.log("hotspot outside switchc : "+hotspotData.actionType);
   
@@ -957,6 +959,10 @@ loader.load(
                         if(objects[i].name == "hotspot")
                         {
                           console.log("hotspot hit");
+                          if(hotspotNodeMap.get(mesh1).visible)
+                          {
+                            console.log("parent object visible");
+                          }
                         }
                              if(recievedObjectCopy[i].actionObject=="NONE")
                              { 
