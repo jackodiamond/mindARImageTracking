@@ -627,9 +627,10 @@ function loadHotspot(hotspotData)
 
         const material = new THREE.MeshLambertMaterial( { color: 0xc0c0c0 } );
 
-        var mesh = new THREE.Mesh( geometry, material );
+        var hotspot = new THREE.Mesh( geometry, material );
+        hotspot.name = "hotspot";
         console.log("cylinder scene"+currentScene);
-        anchor[currentScene].group.add(mesh);
+        anchor[currentScene].group.add(hotspot);
 
         mesh.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1,hotspotData.position.y*0.1);
         mesh.rotation.set(-1.5,-1.5,0);
@@ -881,6 +882,11 @@ loader.load(
                           } else {
                             audios.get(objects[i]).pause();
                           }
+                        }
+
+                        if(objects[i].name == "hotspot")
+                        {
+                          console.log("hotspot hit");
                         }
                              if(recievedObjectCopy[i].actionObject=="NONE")
                              { 
