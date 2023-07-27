@@ -645,7 +645,7 @@ async function loadHotspot(hotspotData)
 
       // Create the empty mesh using the empty geometry and material
       const parent = new THREE.Mesh(emptyGeometry, emptyMaterial);
-
+      parent.rotation.set(1.5,0,-1.5);
       mesh.add(parent);
 
       hotspotMap.set(mesh, parent);
@@ -686,7 +686,7 @@ async function loadHotspot(hotspotData)
               const mesh = new THREE.Mesh(geometry, material)
             mesh.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1+0.5,hotspotData.position.y*0.1);
            //   mesh.position.set(posx*0.1,posz*0.1,posy*0.1);
-              mesh.rotation.set(1.5,0,-1.5);
+           //   mesh.rotation.set(1.5,0,-1.5);
            //    mesh.scale.set(scalex,scaley,scalez);
               //anchor[currentScene].group.add(mesh);
               parent.add(mesh);
