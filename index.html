@@ -706,6 +706,7 @@ async function loadHotspot(hotspotData)
                 plane.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1+0.5,hotspotData.position.y*0.1);
                 //    plane.rotation.set(rotx,roty,rotz);
                 //plane.scale.set(scalex,scaley,scalez);
+                parent.add(plane);
             break;
 
           case "add_video":
@@ -735,6 +736,7 @@ async function loadHotspot(hotspotData)
                 plane.name = "video";
                 objects.push(plane);
                 videos.set(plane, video);
+                parent.add(plane);
             break;
 
             default :
