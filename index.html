@@ -691,7 +691,7 @@ async function loadHotspot(hotspotData)
               //anchor[currentScene].group.add(mesh);
               parent.add(mesh);
               objects.push(mesh);
-              console.log("text added")
+              console.log("text added");
             break;
 
           case "add_image":
@@ -743,6 +743,96 @@ async function loadHotspot(hotspotData)
             console.log("default switch");
             if(hotspotData.ActionType == "Single Correct" || hotspotData.ActionType == "True or False" || hotspotData.ActionType == "Multiple Correct")
             {
+                const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json');
+
+                const geometry = new TextGeometry(hotspotData.actionData.addHotspotQuestion.question, {
+                   font: font,
+                   size: 0.05,
+                   height: 0.01,
+                   curveSegments: 12,
+            
+                })
+                const material = [
+                   new THREE.MeshPhongMaterial({
+                      color: 0xffcc22,
+                   flatShading: true
+                   }), // front
+                   new THREE.MeshPhongMaterial({
+                   color: 0xffcc22
+                   }) // side
+                ]
+                const mesh = new THREE.Mesh(geometry, material)
+                mesh.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1+0.7,hotspotData.position.y*0.1);
+               
+                parent.add(mesh);
+                objects.push(mesh);
+                console.log("text added");
+
+
+              hotspotData.actionData.addHotspotQuestion.allOptions.forEach((option, index) => {
+              console.log(`Option ${index + 1}:`);
+              console.log("Title:", option.title);
+              console.log("Value:", option.value);
+
+              const geometry = new TextGeometry(hotspotData.actionData.addHotspotQuestion.question, {
+                   font: font,
+                   size: 0.05,
+                   height: 0.01,
+                   curveSegments: 12,
+            
+                })
+                const material = [
+                   new THREE.MeshPhongMaterial({
+                      color: 0xffcc22,
+                   flatShading: true
+                   }), // front
+                   new THREE.MeshPhongMaterial({
+                   color: 0xffcc22
+                   }) // side
+                ]
+                const mesh = new THREE.Mesh(geometry, material)
+                mesh.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1+0.5-index*0.2,hotspotData.position.y*0.1);
+               
+                parent.add(mesh);
+
+
+                
+                //add toggle button
+
+                 const geometry = new THREE.CylinderGeometry( 0.05, 0.05, 0.001,10 );
+                //  const geometry2 = new THREE.sp
+        
+              //  var textur = new THREE.TextureLoader().load( hotspotData.mediaUrl );
+             //   var planeMaterial = new THREE.MeshPhysicalMaterial( { map: textur } );
+        
+                const material = new THREE.MeshLambertMaterial( { color: 0xc0c0c0 } );
+        
+                var meshOption = new THREE.Mesh( geometry, material );
+              
+              
+        
+                meshOption.position.set(hotspotData.position.x*0.1-0.5,hotspotData.position.z*0.1+0.5-index*0.2,hotspotData.position.y*0.1);
+              //  mesh.rotation.set(-1.5,-1.5,0);
+             //   mesh.scale.set(hotspotData.scale.x,hotspotData.scale.y,hotspotData.scale.z);
+        
+                objects.push(meshOption);
+                parent.add(meshOption);
+              }
+
+              //add submit button
+              var planeGeometry = new THREE.PlaneGeometry(0.3, 0.3, 1, 1);
+                var textur = new THREE.TextureLoader().load( "audio.png" );
+                var planeMaterial = new THREE.MeshPhysicalMaterial( { map: textur } );
+                var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+                plane.receiveShadow = true;
+            
+                console.log("plane added");
+                anchor[currentScene].group.add(plane);
+                plane.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1-hotspotData.actionData.addHotspotQuestion.allOptions.length*0.2,hotspotData.position.y*0.1);
+                //    plane.rotation.set(rotx,roty,rotz);
+                //plane.scale.set(scalex,scaley,scalez);
+                parent.add(plane);
+
               
             }
             break;
