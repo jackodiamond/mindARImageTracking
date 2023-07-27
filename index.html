@@ -695,9 +695,46 @@ async function loadHotspot(hotspotData)
             break;
 
           case "add_image":
+                var planeGeometry = new THREE.PlaneGeometry(0.3, 0.3, 1, 1);
+                var textur = new THREE.TextureLoader().load( "audio.png" );
+                var planeMaterial = new THREE.MeshPhysicalMaterial( { map: textur } );
+                var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+                plane.receiveShadow = true;
+            
+                console.log("plane added");
+                anchor[currentScene].group.add(plane);
+                plane.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1+0.5,hotspotData.position.y*0.1);
+                //    plane.rotation.set(rotx,roty,rotz);
+                //plane.scale.set(scalex,scaley,scalez);
             break;
 
           case "add_video":
+                var planeGeometry = new THREE.PlaneGeometry(0.3, 0.3, 1, 1);
+
+                // Create a new VideoTexture from a video file
+                video = document.createElement('video');
+                video.src = "babylon.mp4";
+                video.load();
+                video.pause();
+              //  video.play();
+                var videoTexture = new THREE.VideoTexture(video);
+            
+                // Create a new MeshPhysicalMaterial with the video texture as the map
+                var planeMaterial = new THREE.MeshPhysicalMaterial( { map: videoTexture } );
+            
+                // Create a new Mesh object using the PlaneGeometry and MeshPhysicalMaterial
+                var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+            
+                plane.receiveShadow = true;
+            
+                console.log("plane added");
+                anchor[currentScene].group.add(plane);
+                plane.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1+0.5,hotspotData.position.y*0.1);
+              //      plane.rotation.set(rotx,roty,rotz);
+             //   plane.scale.set(scalex,scaley,scalez);
+                plane.name = "video";
+                objects.push(plane);
+                videos.set(plane, video);
             break;
 
             default :
