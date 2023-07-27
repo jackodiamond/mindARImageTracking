@@ -741,7 +741,7 @@ async function loadHotspot(hotspotData)
 
             default :
             console.log("default switch");
-            if(hotspotData.ActionType == "Single Correct" || hotspotData.ActionType == "True or False" || hotspotData.ActionType == "Multiple Correct")
+            if(hotspotData.actionType == "Single Correct" || hotspotData.actionType == "True or False" || hotspotData.actionType == "Multiple Correct")
             {
                 const font = await loadFont('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json');
 
