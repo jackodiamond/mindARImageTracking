@@ -684,7 +684,7 @@ async function loadHotspot(hotspotData)
                  }) // side
               ]
               const mesh = new THREE.Mesh(geometry, material)
-            mesh.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1,hotspotData.position.y*0.1+1);
+            mesh.position.set(hotspotData.position.x*0.1,hotspotData.position.z*0.1+0.3,hotspotData.position.y*0.1);
            //   mesh.position.set(posx*0.1,posz*0.1,posy*0.1);
            //   mesh.rotation.set(rotx,roty,rotz);
            //    mesh.scale.set(scalex,scaley,scalez);
@@ -962,6 +962,10 @@ loader.load(
                           if(hotspotMap.get(objects[i]).visible)
                           {
                             console.log("parent object visible");
+                            hotspotMap.get(objects[i]).visible =false;
+                          }else
+                          {
+                            hotspotMap.get(objects[i]).visible =true;
                           }
                         }
                              if(recievedObjectCopy[i].actionObject=="NONE")
